@@ -24,10 +24,10 @@ def download_unpack(rewrite=False):
    			zipObj.extractall(path='GodotModule')
 	
 
-def compile_godot(godot_root, platform='x11', tools='yes', target='release_debug', bits=64):
+def compile_godot(godot_root, platform='windows', tools='yes', target='release_debug', bits=64):
 	current_path = os.getcwd()
 	os.chdir(godot_root)
-	os.system(f"scons platform={platform} tools={tools} target={target} bits={bits}")
+	os.system(f"scons platform={platform} tools={tools} target={target} -j8")
 	os.chdir(current_path)
 
 def install_module(godot_root, rewrite=False):
@@ -48,6 +48,6 @@ if __name__=='__main__':
 	download_unpack(rewrite=False)
 	install_module(godot_root=GODOT_PATH, rewrite=True)
 	install_python_module()
-	compile_godot(godot_root=GODOT_PATH, platform='x11', tools='yes', target='release_debug', bits=64)
-	compile_godot(godot_root=GODOT_PATH, platform='x11', tools='no', target='release_debug', bits=64)
-	compile_godot(godot_root=GODOT_PATH, platform='server', tools='no', target='release_debug', bits=64)
+	compile_godot(godot_root=GODOT_PATH, platform='windows', tools='yes', target='release_debug', bits=64)
+	compile_godot(godot_root=GODOT_PATH, platform='windows', tools='no', target='release_debug', bits=64)
+	compile_godot(godot_root=GODOT_PATH, platform='windows', tools='no', target='release_debug', bits=64)
